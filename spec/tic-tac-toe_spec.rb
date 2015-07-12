@@ -6,16 +6,34 @@ describe 'board' do
     @game = Board.new
   end
 
-  it 'should be empty' do
+  it 'should be empty at start' do
     expect(@game.grid).to eq [['empty', 'empty', 'empty'], ['empty', 'empty', 'empty'], ['empty', 'empty', 'empty']]
   end
 
-  it 'should not be game over' do
-    expect(@game.game_over).to be false
-  end
+  describe 'game over function' do
 
-  it 'should have ongoing game status' do
-    expect(@game.game_status).to eq 'Ongoing'
+    context 'game is not over' do
+      it 'should not be game over' do
+        expect(@game.game_over).to be false
+      end
+
+      it 'should have ongoing game status' do
+        expect(@game.game_status).to eq 'Ongoing'
+      end
+    end
+
+    context 'game is over' do
+      it 'should return that the game is over' do
+        @game.place_piece(0, 0, 'X')
+        @game.place_piece(0, 1, 'X')
+        @game.place_piece(0, 2, 'X')
+        expect(@game.game_over?).to be true
+      end
+
+      it 'should not have ongoing game status' do
+        expect(@game.game_status).to_not eq 'Ongoing'
+      end
+    end
   end
 end
 
@@ -35,5 +53,7 @@ describe 'players' do
     @player.o_player = 'O Player'
     expect(@player.o_player).to eq 'O Player'
   end
+
+
   
 end

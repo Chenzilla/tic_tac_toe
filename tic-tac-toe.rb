@@ -31,12 +31,10 @@ class Board
   def find_possible_moves
 
     count = 0 
-    horizontal_coord = 0
     list_array = []
 
-    @grid.each do |row|
-      vertical_coord = 0
-      row.each do |cell|
+    @grid.each_with_index do |row, horizontal_coord|
+      row.each_with_index do |cell, vertical_coord|
         if cell == 'empty'
           vertical_spot = case vertical_coord
             when 0 then 'top'
@@ -53,9 +51,7 @@ class Board
           list_array[count][1] = [vertical_coord, horizontal_coord]
           count += 1
         end
-        vertical_coord += 1
       end
-      horizontal_coord += 1
     end
     return list_array
   end
@@ -66,10 +62,6 @@ class Board
       puts "#{count}. #{choice[0].capitalize}"
       count += 1
     end
-  end
-
-  def move_to_coordinates(n)
-    self.find_possible_moves[n][0]
   end
 
   def game_over?
@@ -144,6 +136,5 @@ def run
   end
 end
 
-# run
 # sup = Board.new
 # puts sup.find_possible_moves.length
