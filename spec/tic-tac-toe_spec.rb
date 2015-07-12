@@ -22,13 +22,18 @@ end
 describe 'players' do 
 
   before :all do
-      @game = Board.new
-      @player = PlayerPair.new(@game)
+    @game = Board.new
+    @player = PlayerPair.new(@game)
   end
 
-  it 'should be able to create a player using X' do
+  it 'should be able to create a player that uses X\'s' do
     @player.x_player = 'X Player'
     expect(@player.x_player).to eq 'X Player'
+  end
+
+  it 'should be able to create a player that uses O\'s' do
+    @player.o_player = 'O Player'
+    expect(@player.o_player).to eq 'O Player'
   end
   
 end
