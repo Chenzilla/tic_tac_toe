@@ -6,13 +6,25 @@ describe 'board' do
     @game = Board.new
   end
 
-  it 'should be empty at start' do
-    expect(@game.grid).to eq [['empty', 'empty', 'empty'], ['empty', 'empty', 'empty'], ['empty', 'empty', 'empty']]
+  describe 'piece placement' do
+    context 'Before any pieces are placed' do
+      it 'should be empty at start' do
+        expect(@game.grid).to eq [['empty', 'empty', 'empty'], ['empty', 'empty', 'empty'], ['empty', 'empty', 'empty']]
+      end
+    end
+
+    context 'After pieces are placed' do
+      it 'should include the piece at the corresponding grid coordinate' do
+        @game.place_piece(2, 0, 'O')
+        @game.place_piece(2, 1, 'O')
+        expect(@game.grid).to eq [['empty', 'empty', 'O'], ['empty', 'empty', 'O'], ['empty', 'empty', 'empty']]
+      end
+    end
   end
 
   describe 'game over function' do
 
-    context 'game is not over' do
+    context 'when the game is not over' do
       it 'should not be game over' do
         expect(@game.game_over).to be false
       end
@@ -22,7 +34,7 @@ describe 'board' do
       end
     end
 
-    context 'game is over' do
+    context 'when the game is over' do
       it 'should return that the game is over' do
         @game.place_piece(0, 0, 'X')
         @game.place_piece(0, 1, 'X')
@@ -53,7 +65,4 @@ describe 'players' do
     @player.o_player = 'O Player'
     expect(@player.o_player).to eq 'O Player'
   end
-
-
-  
 end
