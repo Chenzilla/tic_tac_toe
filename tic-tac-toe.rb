@@ -1,5 +1,5 @@
 class Board 
-  attr_reader :grid, :last_move, :game_won, :game_status
+  attr_reader :grid, :last_move, :game_status, :game_over
 
   def initialize
     @grid = [['empty', 'empty', 'empty'], ['empty', 'empty', 'empty'], ['empty', 'empty', 'empty']]
