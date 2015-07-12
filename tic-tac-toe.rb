@@ -104,7 +104,7 @@ class PlayerPair
   end
 end
 
-def game
+def run
   loop do 
     puts 'Would you like to play a game? Yes or no:'
     if gets.chomp!.downcase != 'yes'
@@ -144,6 +144,6 @@ def game
   end
 end
 
-game
+# run
 # sup = Board.new
 # puts sup.find_possible_moves.length
